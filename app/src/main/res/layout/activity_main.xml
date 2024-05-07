@@ -5,23 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828"
-    tools:context=".MainActivity">
+    tools:context="MainActivity">
 
     <LinearLayout
+        android:id="@+id/topbox"
         android:layout_width="627dp"
-        android:layout_height="55dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="450dp"
         android:background="@color/green"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingTop="4dp"
+        android:paddingStart="10dp"
         android:paddingEnd="8dp"
-        android:paddingBottom="4dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/message_box"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="570dp"
+            android:layout_height="23dp"
             android:layout_weight="1"
             android:gravity="start"
             android:orientation="horizontal">
@@ -66,7 +72,6 @@
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="14:31:56"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
 
@@ -74,22 +79,13 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_banner"
-        android:layout_width="625dp"
-        android:layout_height="425dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="336dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/icon"
-        app:layout_constraintDimensionRatio="16:11.9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/message_box"
         android:layout_width="627dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="335dp"
+        android:layout_marginBottom="1dp"
         android:background="#000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -97,29 +93,43 @@
         android:paddingTop="8dp"
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="481dp"/>
-
-    <LinearLayout
-        android:layout_width="333dp"
-        android:layout_height="543dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="628dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbox"
+        tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="333dp"
+        android:layout_height="543dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topbox"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/namemasjid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="มัสยิดหน้าควน(โรงไฟฟ้า)"
             android:textColor="@color/blue_600"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
