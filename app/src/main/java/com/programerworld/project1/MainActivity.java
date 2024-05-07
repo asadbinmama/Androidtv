@@ -23,11 +23,12 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
                 String currentTime = sdf.format(new Date());
                 textView.setText(currentTime);
                 handler.postDelayed(this, 0); // อัปเดตทุกๆ 1 วินาที
             }
+            //ssss
         });
 
         // ใน onCreate() หรือที่ต้องการใช้งาน Animation
