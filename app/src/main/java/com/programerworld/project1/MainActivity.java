@@ -1,52 +1,76 @@
 package com.programerworld.project1;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import android.view.animation.TranslateAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 
 public class MainActivity extends AppCompatActivity {
+    private EditText numCodeEditText;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // เริ่มต้น EditText
+        numCodeEditText = findViewById(R.id.numcode);
 
-        final TextView textView = findViewById(R.id.time);
-
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
+        // เพิ่ม TextChangedListener เพื่อตรวจสอบจำนวนตัวอักษรที่ถูกป้อนใน EditText
+        numCodeEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void run() {
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
-                String currentTime = sdf.format(new Date());
-                textView.setText(currentTime);
-                handler.postDelayed(this, 0); // อัปเดตทุกๆ 1 วินาที
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // ก่อนที่ข้อความจะเปลี่ยนแปลง
             }
-            //ssss
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // เมื่อข้อความถูกเปลี่ยนแปลง
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                // หลังจากที่ข้อความถูกเปลี่ยนแล้ว
+
+                // ตรวจสอบว่าข้อความมีความยาวมากกว่า 5 ตัวหรือไม่
+                if (s.length() > 5) {
+                    // ถ้ามีมากกว่า 5 ตัว ให้ลบตัวอักษรที่เกินกว่า 5 ตัว
+                    s.delete(5, s.length());
+                }
+            }
         });
+    }
 
-        // ใน onCreate() หรือที่ต้องการใช้งาน Animation
-        TextView infoTextView = findViewById(R.id.infoTextView);
+    // วิธีการที่เรียกว่าเมื่อคลิกปุ่ม "Next"
+    public void openWebsite(View view) {
+        // รับรหัสที่ป้อนจาก EditText
+        String numCode = numCodeEditText.getText().toString();
 
-// สร้าง Animation โดยกำหนดตำแหน่งปัจจุบันและตำแหน่งปลายทางของข้อความ
-        TranslateAnimation animationRight = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
-        animationRight.setDuration(5000); // ระยะเวลา 5 วินาที
+        // ตรวจสอบว่ารหัสที่ป้อนถูกต้องหรือไม่ (ในกรณีนี้คือรหัส 5 หลัก)
+        if (numCode.length() == 5) {
+            // รหัสถูกต้อง สร้าง URL ด้วยรหัสที่ป้อน
+            String formattedCode = numCode.substring(0, 2) + "." + numCode.substring(2);
+            String url = "https://imacscenter.org/masjid-prayer-time/" + formattedCode;
 
-        TranslateAnimation animationLeft = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
-        animationLeft.setDuration(5000); // ระยะเวลา 5 วินาที
+            // เปิด URL ในเว็บเบราว์เซอร์
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        } else {
+            // รหัสไม่ถูกต้อง แสดงข้อความแสดงข้อผิดพลาด
+            Toast.makeText(this, "กรุณาป้อนข้อมูลให้ครบ 5 ตัว", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-// สร้าง AnimationSet เพื่อรวม Animation และกำหนดคุณสมบัติให้เลื่อนต่อเนื่อง
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(animationRight);
-        animationSet.addAnimation(animationLeft);
-        animationSet.setRepeatCount(Animation.INFINITE); // เล่น Animation อย่างต่อเนื่อง
-// เริ่ม Animation
-        infoTextView.startAnimation(animationSet);
+    // วิธีการเปิดนโยบายความเป็นส่วนตัว
+    public void openPrivacyPolicy(View view) {
+        // Open the privacy policy URL in a web browser
+        String privacyPolicyUrl = "https://imacscenter.org/main/privacy-policy/";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl));
+        startActivity(intent);
+
+
     }
 }
