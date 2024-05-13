@@ -1,6 +1,9 @@
 package com.programerworld.project1;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
@@ -31,5 +34,31 @@ public class timepray extends AppCompatActivity {
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
+        //ตัวอักษรเคลื่อนที่
+        TextView infoTextView = findViewById(R.id.infoTextView);
+
+        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+
+        final AnimationSet animationSet = new AnimationSet(true);
+        animationSet.addAnimation(slideLeft);
+
+        slideLeft.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                infoTextView.startAnimation(animationSet);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        infoTextView.startAnimation(animationSet);
     }
 }

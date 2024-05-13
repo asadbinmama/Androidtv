@@ -44,4 +44,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl));
         startActivity(intent);
     }
+
 }

@@ -104,7 +104,7 @@
 
         <TextView
             android:id="@+id/infoTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="1445dp"
             android:layout_height="wrap_content"
             android:text="มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255" />
     </LinearLayout>
