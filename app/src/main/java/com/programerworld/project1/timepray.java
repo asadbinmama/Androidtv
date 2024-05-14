@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +51,13 @@ public class timepray extends AppCompatActivity {
 
         // نص الرسوم المتحركة
         TextView infoTextView = findViewById(R.id.infoTextView);
+
+        // تحريك النص من اليمين إلى اليسار
+        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        final AnimationSet animationSet = new AnimationSet(true);
+        animationSet.addAnimation(slideLeft);
+        infoTextView.setAnimation(animationSet);
+        animationSet.start();
 
         // إعداد ViewPager
         int[] images = {R.drawable.b, R.drawable.b9, R.drawable.b5}; // الصور الخاصة بك
