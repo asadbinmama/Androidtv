@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="tvv">
+      <entry key="app">
         <State>
           <targetSelectedWithDropDown>
             <Target>
@@ -10,12 +10,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\M\.android\avd\Television_1080p_API_34_2.avd" />
+                  <value value="C:\Users\User\.android\avd\Television_1080p_API_34_2.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-14T06:38:35.812211800Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-14T06:46:43.855470600Z" />
         </State>
       </entry>
     </value>

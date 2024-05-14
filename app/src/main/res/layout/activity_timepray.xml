@@ -8,7 +8,7 @@
     android:background="@color/black"
     tools:context=".timepray">
 
-    <!-- إضافة ViewPager -->
+    <!-- เพิ่ม ViewPager -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="621dp"
@@ -92,6 +92,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/message_box"
@@ -184,4 +185,6 @@
             android:background="@color/divider" />
 
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

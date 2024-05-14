@@ -29,7 +29,7 @@ public class timepray extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
 
-        // الوقت
+        // เวลา
         final TextView textView = findViewById(R.id.time);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -42,22 +42,22 @@ public class timepray extends AppCompatActivity {
             }
         });
 
-        // اليوم، الشهر، السنة
+        // วันเดือนปี
         final TextView textViewDate = findViewById(R.id.Date);
         SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.US);
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
-        // نص الرسوم المتحركة
+        // ข้อความภาพเคลื่อนไหว
         final TextView infoTextView = findViewById(R.id.infoTextView);
 
-        // إعداد ViewPager
+        // การตั้งค่า ViewPager
         int[] images = {R.drawable.b, R.drawable.b9, R.drawable.b5}; // الصور الخاصة بك
         final ViewPager viewPager = findViewById(R.id.viewPager);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         viewPager.setAdapter(adapter);
 
-        // تغيير الصور كل 4 ثوانٍ
+        // เปลี่ยนภาพทุกๆ 4 วินาที
         final Handler imageHandler = new Handler();
         imageHandler.postDelayed(new Runnable() {
             @Override
@@ -69,10 +69,10 @@ public class timepray extends AppCompatActivity {
             }
         }, IMAGE_CHANGE_INTERVAL);
 
-        // تحريك النص من اليمين إلى اليسار
+        // ย้ายข้อความจากขวาไปซ้าย
         final Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
 
-        // AnimationListener لإعادة تشغيل الحركة بعد الانتهاء
+        // AnimationListener เพื่อเริ่มแอนิเมชั่นใหม่หลังจากเสร็จสิ้น
         slideLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {}
@@ -84,14 +84,14 @@ public class timepray extends AppCompatActivity {
                     public void run() {
                         infoTextView.startAnimation(slideLeft);
                     }
-                }, 2000); // مدة الانتظار قبل بدء الحركة من جديد
+                }, 0); // ต้องรอนานแค่ไหนก่อนที่จะเริ่มแอนิเมชั่นอีกครั้ง
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        // تشغيل الحركة
+        // เล่นแอนิเมชั่น
         infoTextView.startAnimation(slideLeft);
     }
 
