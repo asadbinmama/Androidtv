@@ -16,6 +16,7 @@ public class timepray extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
 
+        //time
         final TextView textView = findViewById(R.id.time);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -26,15 +27,15 @@ public class timepray extends AppCompatActivity {
                 textView.setText(currentTime);
                 handler.postDelayed(this, 0); // อัปเดตทุกๆ 1 วินาที
             }
-            //ssss
         });
 
+        //day month year
         final TextView textViewDate = findViewById(R.id.Date);
         SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.US);
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
-        //ตัวอักษรเคลื่อนที่
+        //animation text
         TextView infoTextView = findViewById(R.id.infoTextView);
 
         Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
@@ -60,5 +61,8 @@ public class timepray extends AppCompatActivity {
         });
 
         infoTextView.startAnimation(animationSet);
+
+
+
     }
 }
