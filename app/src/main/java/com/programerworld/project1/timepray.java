@@ -50,14 +50,7 @@ public class timepray extends AppCompatActivity {
         textViewDate.setText(currentDate);
 
         // نص الرسوم المتحركة
-        TextView infoTextView = findViewById(R.id.infoTextView);
-
-        // تحريك النص من اليمين إلى اليسار
-        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        final AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(slideLeft);
-        infoTextView.setAnimation(animationSet);
-        animationSet.start();
+        final TextView infoTextView = findViewById(R.id.infoTextView);
 
         // إعداد ViewPager
         int[] images = {R.drawable.b, R.drawable.b9, R.drawable.b5}; // الصور الخاصة بك
@@ -76,6 +69,46 @@ public class timepray extends AppCompatActivity {
                 imageHandler.postDelayed(this, IMAGE_CHANGE_INTERVAL);
             }
         }, IMAGE_CHANGE_INTERVAL);
+
+        // تحريك النص من اليمين إلى اليسار
+        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        final AnimationSet animationSetLeft = new AnimationSet(true);
+        animationSetLeft.addAnimation(slideLeft);
+
+        // تحريك النص من اليسار إلى اليمين
+        Animation slideRight = AnimationUtils.loadAnimation(this, R.anim.slide_right);
+        final AnimationSet animationSetRight = new AnimationSet(true);
+        animationSetRight.addAnimation(slideRight);
+
+        // AnimationListener للتبديل بين حركتي النص
+        slideLeft.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                infoTextView.startAnimation(animationSetRight); // تبدأ الحركة الثانية بعد الانتهاء من الأولى
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+
+        slideRight.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                infoTextView.startAnimation(animationSetLeft); // تبدأ الحركة الأولى بعد الانتهاء من الثانية
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+
+        // تشغيل الحركة الأولى
+        infoTextView.startAnimation(animationSetLeft);
     }
 
     private static class ViewPagerAdapter extends PagerAdapter {
@@ -118,3 +151,4 @@ public class timepray extends AppCompatActivity {
         }
     }
 }
+
