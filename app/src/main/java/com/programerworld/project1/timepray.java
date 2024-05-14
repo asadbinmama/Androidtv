@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -71,26 +70,29 @@ public class timepray extends AppCompatActivity {
         }, IMAGE_CHANGE_INTERVAL);
 
         // تحريك النص من اليمين إلى اليسار
-        Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        final AnimationSet animationSetLeft = new AnimationSet(true);
-        animationSetLeft.addAnimation(slideLeft);
+        final Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
 
-        // AnimationListener لإعادة تشغيل الحركة من جديد بعد الانتهاء
+        // AnimationListener لإعادة تشغيل الحركة بعد الانتهاء
         slideLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                infoTextView.startAnimation(animationSetLeft); // إعادة تشغيل الحركة بعد الانتهاء
+                infoTextView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        infoTextView.startAnimation(slideLeft);
+                    }
+                }, 2000); // مدة الانتظار قبل بدء الحركة من جديد
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        // تشغيل الحركة الأولى
-        infoTextView.startAnimation(animationSetLeft);
+        // تشغيل الحركة
+        infoTextView.startAnimation(slideLeft);
     }
 
     private static class ViewPagerAdapter extends PagerAdapter {
@@ -133,5 +135,4 @@ public class timepray extends AppCompatActivity {
         }
     }
 }
-
 
