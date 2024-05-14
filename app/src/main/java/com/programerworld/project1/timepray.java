@@ -75,32 +75,14 @@ public class timepray extends AppCompatActivity {
         final AnimationSet animationSetLeft = new AnimationSet(true);
         animationSetLeft.addAnimation(slideLeft);
 
-        // تحريك النص من اليسار إلى اليمين
-        Animation slideRight = AnimationUtils.loadAnimation(this, R.anim.slide_right);
-        final AnimationSet animationSetRight = new AnimationSet(true);
-        animationSetRight.addAnimation(slideRight);
-
-        // AnimationListener للتبديل بين حركتي النص
+        // AnimationListener لإعادة تشغيل الحركة من جديد بعد الانتهاء
         slideLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                infoTextView.startAnimation(animationSetRight); // تبدأ الحركة الثانية بعد الانتهاء من الأولى
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-
-        slideRight.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {}
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                infoTextView.startAnimation(animationSetLeft); // تبدأ الحركة الأولى بعد الانتهاء من الثانية
+                infoTextView.startAnimation(animationSetLeft); // إعادة تشغيل الحركة بعد الانتهاء
             }
 
             @Override
@@ -151,4 +133,5 @@ public class timepray extends AppCompatActivity {
         }
     }
 }
+
 
