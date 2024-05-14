@@ -23,13 +23,19 @@ import java.util.Locale;
 public class timepray extends AppCompatActivity {
 
     private static final int IMAGE_CHANGE_INTERVAL = 4000; // فاصل زمني لتغيير الصور بالميلي ثانية (4 ثوانٍ)
+    private static final int TEXT_ANIMATION_DURATION = 10000; // مدة حركة النص بالميلي ثانية (10 ثوانٍ)
+    private String[] texts = {
+            "             มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255",
+            " Masjid Na Khwan Nuruddin is open for new student admissions for the year 2567. Evening Quran classes,  time from 18:30 - 20:00. Enrollment starts from age 6. Contact Teacher Solihah Madahin at 095-0214255    "
+    };
+    private int currentTextIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
 
-        // เวลา
+        // الوقت
         final TextView textView = findViewById(R.id.time);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -42,22 +48,23 @@ public class timepray extends AppCompatActivity {
             }
         });
 
-        // วันเดือนปี
+        // اليوم، الشهر، السنة
         final TextView textViewDate = findViewById(R.id.Date);
         SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.US);
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
-        // ข้อความภาพเคลื่อนไหว
+        // نص الرسوم المتحركة
         final TextView infoTextView = findViewById(R.id.infoTextView);
+        infoTextView.setText(texts[currentTextIndex]);
 
-        // การตั้งค่า ViewPager
+        // إعداد ViewPager
         int[] images = {R.drawable.b, R.drawable.b9, R.drawable.b5}; // الصور الخاصة بك
         final ViewPager viewPager = findViewById(R.id.viewPager);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         viewPager.setAdapter(adapter);
 
-        // เปลี่ยนภาพทุกๆ 4 วินาที
+        // تغيير الصور كل 4 ثوانٍ
         final Handler imageHandler = new Handler();
         imageHandler.postDelayed(new Runnable() {
             @Override
@@ -69,29 +76,25 @@ public class timepray extends AppCompatActivity {
             }
         }, IMAGE_CHANGE_INTERVAL);
 
-        // ย้ายข้อความจากขวาไปซ้าย
+        // تحريك النص من اليمين إلى اليسار
         final Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-
-        // AnimationListener เพื่อเริ่มแอนิเมชั่นใหม่หลังจากเสร็จสิ้น
         slideLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {}
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                infoTextView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        infoTextView.startAnimation(slideLeft);
-                    }
-                }, 0);//textstart // ต้องรอนานแค่ไหนก่อนที่จะเริ่มแอนิเมชั่นอีกครั้ง
+                // بعد انتهاء الحركة، تغيير النص
+                currentTextIndex = (currentTextIndex + 1) % texts.length;
+                infoTextView.setText(texts[currentTextIndex]);
+                infoTextView.startAnimation(slideLeft); // بدء الحركة مرة أخرى
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        // เล่นแอนิเมชั่น
+        // بدء الحركة الأولى
         infoTextView.startAnimation(slideLeft);
     }
 
