@@ -84,7 +84,7 @@ public class timepray extends AppCompatActivity {
                     public void run() {
                         infoTextView.startAnimation(slideLeft);
                     }
-                }, 0); // ต้องรอนานแค่ไหนก่อนที่จะเริ่มแอนิเมชั่นอีกครั้ง
+                }, 0);//textstart // ต้องรอนานแค่ไหนก่อนที่จะเริ่มแอนิเมชั่นอีกครั้ง
             }
 
             @Override
