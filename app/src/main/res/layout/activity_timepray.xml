@@ -11,8 +11,8 @@
     <!-- เพิ่ม ViewPager -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="627dp"
-        android:layout_height="450dp"
+        android:layout_width="618dp"
+        android:layout_height="468dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,7 +23,7 @@
 
     <LinearLayout
         android:id="@+id/topbox"
-        android:layout_width="640dp"
+        android:layout_width="620dp"
         android:layout_height="35dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="450dp"
@@ -115,7 +115,8 @@
 
         <TextView
             android:id="@+id/infoTextView"
-            android:layout_width="1445dp"
+            android:layout_width="10000dp"
+            android:textSize="20dp"
             android:layout_height="wrap_content"
             android:text=""/>
     </LinearLayout>
@@ -145,199 +146,53 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/Waqtuname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:text="เวลา"
                 android:textColor="@android:color/white"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/azantime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:text="อาซาน"
                 android:textColor="@android:color/white"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Iqomahtime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="8dp"
                 android:text="อีกอมะฮ์"
                 android:textColor="@android:color/white"
+                android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <View
+            android:id="@+id/line"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="5dp"
             android:layout_marginBottom="10px"
-            android:background="@color/divider" />
-
-        <!-- แถวที่ 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="ซุบฮี"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="05:15"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="05:30"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <!-- แถวที่ 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="ซุฮรี"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="12:15"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="12:30"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <!-- แถวที่ 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="อัสรี"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="15:15"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="15:30"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <!-- แถวที่ 4 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="มัฆริบ"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="18:15"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="18:30"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <!-- แถวที่ 5 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="อีซา"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="20:15"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:text="20:30"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-    </LinearLayout>
+            android:background="@color/divider"
+            android:paddingStart="20dp" />
+</LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

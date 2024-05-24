@@ -140,8 +140,7 @@ public class timepray extends AppCompatActivity {
                             @Override
                             public void run() {
                                 textViewIslamicDate.setText(String.format(Locale.US,
-                                        "%s %s %s",
-                                        hijriDay, hijriMonthEn, hijriYear));
+                                        "%s %s %s", hijriDay, hijriMonthEn, hijriYear));
                             }
                         });
                     }
@@ -153,6 +152,7 @@ public class timepray extends AppCompatActivity {
             }
         }).start();
     }
+
 
     private static class ViewPagerAdapter extends PagerAdapter {
 
