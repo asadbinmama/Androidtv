@@ -70,7 +70,7 @@ public class timepray extends AppCompatActivity {
         infoTextView.setText(texts[currentTextIndex]);
 
         // การตระเตรียม ViewPager
-        int[] images = {R.drawable.b, R.drawable.b9, R.drawable.b5}; // รูปของคุณ
+        int[] images = {R.drawable.m2, R.drawable.m1, R.drawable.m3}; // รูปของคุณ
         final ViewPager viewPager = findViewById(R.id.viewPager);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         viewPager.setAdapter(adapter);
