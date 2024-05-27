@@ -202,21 +202,21 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ซุบฮฺ"
+                    android:text="   ซุบฮฺ"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="04:42"
+                    android:text="   04:42"
                     android:textColor="#00FF00" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="05:10"
+                    android:text="   05:10"
                     android:textColor="#FF0000" />
             </LinearLayout>
 
@@ -232,21 +232,21 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ซุฮฺรี"
+                    android:text="   ซุฮฺรี"
                     android:textColor="@color/white"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="12:30"
+                    android:text="   12:30"
                     android:textColor="#00FF00" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="12:45"
+                    android:text="   12:45"
                     android:textColor="#FF0000"/>
             </LinearLayout>
 
@@ -262,14 +262,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="อัสรี"
+                    android:text="   อัสรี"
                     android:textColor="@android:color/white" />
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="15:45"
+                    android:text="   15:45"
                     android:textColor="#00FF00"
                     android:textStyle="bold" />
 
@@ -277,13 +277,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="16:00"
+                    android:text="   16:00"
                     android:textColor="#FF0000"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -298,21 +297,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุบฮฺ"
+                        android:text="   ซุบฮฺ"
                         android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="04:42"
+                        android:text="   04:42"
                         android:textColor="#00FF00" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="05:10"
+                        android:text="   05:10"
                         android:textColor="#FF0000"/>
                 </LinearLayout>
 
@@ -328,21 +327,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุฮฺรี"
+                        android:text="   ซุฮฺรี"
                         android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="12:30"
+                        android:text="   12:30"
                         android:textColor="#00FF00" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12:45"
+                        android:text="   12:45"
                         android:textColor="#FF0000"/>
                 </LinearLayout>
 
@@ -357,21 +356,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุฮฺรี"
+                        android:text="   ซุฮฺรี"
                         android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12:30"
+                        android:text="   12:30"
                         android:textColor="#00FF00" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12:45"
+                        android:text="   12:45"
                         android:textColor="#FF0000"/>
                 </LinearLayout>
 
@@ -387,7 +386,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="อัสรี"
+                        android:text="   อัสรี"
                         android:textColor="@android:color/white" />
 
 
@@ -395,7 +394,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="15:45"
+                        android:text="   15:45"
                         android:textColor="#00FF00"
                         android:textStyle="bold" />
 
@@ -403,7 +402,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="16:00"
+                        android:text="   16:00"
                         android:textColor="#FF0000"
                         android:textStyle="bold" />
                 </LinearLayout>
