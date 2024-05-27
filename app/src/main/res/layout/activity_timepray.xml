@@ -187,7 +187,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -202,7 +202,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ซุบฮฺ" />
+                    android:text="ซุบฮฺ"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -215,7 +216,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="05:10" />
+                    android:text="05:10"
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <!-- تكرار النموذج السابق لباقي العناصر في القائمة -->
@@ -230,7 +232,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ซุฮฺรี" />
+                    android:text="ซุฮฺรี"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -243,7 +246,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="12:45" />
+                    android:text="12:45"
+                    android:textColor="#FF0000"/>
             </LinearLayout>
 
             <!-- تكرار النموذج السابق لباقي العناصر في القائمة -->
@@ -274,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="16:00"
-                    android:textColor="@android:color/white"
+                    android:textColor="#FF0000"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -294,7 +298,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุบฮฺ" />
+                        android:text="ซุบฮฺ"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -307,7 +312,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="05:10" />
+                        android:text="05:10"
+                        android:textColor="#FF0000"/>
                 </LinearLayout>
 
                 <!-- تكرار النموذج السابق لباقي العناصر في القائمة -->
@@ -322,7 +328,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุฮฺรี" />
+                        android:text="ซุฮฺรี"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -335,7 +342,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12:45" />
+                        android:text="12:45"
+                        android:textColor="#FF0000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -349,7 +357,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ซุฮฺรี" />
+                        android:text="ซุฮฺรี"
+                        android:textColor="@color/white"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -362,7 +371,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12:45" />
+                        android:text="12:45"
+                        android:textColor="#FF0000"/>
                 </LinearLayout>
 
 
@@ -394,7 +404,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="16:00"
-                        android:textColor="@android:color/white"
+                        android:textColor="#FF0000"
                         android:textStyle="bold" />
                 </LinearLayout>
 
