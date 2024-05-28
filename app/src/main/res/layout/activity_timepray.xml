@@ -386,7 +386,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   04:42"
+                        android:text="   18:28"
                         android:textColor="#00FF00"
                         android:textStyle="bold"/>
 
@@ -395,7 +395,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   05:10"
+                        android:text="   18:38"
                         android:textColor="#FF0000"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -435,7 +435,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   12:30"
+                        android:text="   20:00"
 
                         android:textColor="#00FF00"
                         android:textStyle="bold"/>
@@ -445,7 +445,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   12:45"
+                        android:text="   20:10"
                         android:textColor="#FF0000"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -462,54 +462,6 @@
                     android:paddingStart="20dp"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout" />
 
-                <LinearLayout
-                    android:id="@+id/row6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="-6dp">
-
-                    <!-- تعديل المحتوى لكل عنصر في القائمة -->
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="  ญุมุอะฮ"
-                        android:textColor="@color/white"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="   12:30"
-                        android:textColor="#00FF00"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="   12:45"
-                        android:textColor="#FF0000"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-                <View
-                    android:id="@+id/line7"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="10px"
-                    android:layout_below="@id/row6"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@color/divider"
-                    android:paddingStart="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout" />
 
                 <LinearLayout
                     android:id="@+id/row7"
@@ -534,7 +486,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   15:45"
+                        android:text="   06:15"
                         android:textColor="#00FF00"
                         android:textStyle="bold" />
 
@@ -543,7 +495,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   16:00"
+                        android:text="   06:34"
                         android:textColor="#FF0000"
                         android:textStyle="bold" />
                 </LinearLayout>

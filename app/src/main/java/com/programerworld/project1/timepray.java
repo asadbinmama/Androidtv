@@ -1,6 +1,6 @@
 package com.programerworld.project1;
 
-import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -9,26 +9,30 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.json.JSONObject;
-import java.io.IOException;
 
 public class timepray extends AppCompatActivity {
 
-    private static final int IMAGE_CHANGE_INTERVAL = 5000; // ช่วงการเปลี่ยนภาพเป็นมิลลิวินาที (5 วินาที)
+    private static final int IMAGE_CHANGE_INTERVAL = 5000; // Image change interval in milliseconds (5 seconds)
     private String[] texts = {
             "             มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255",
             " Masjid Na Khwan Nuruddin is open for new student admissions for the year 2567. Evening Quran classes, time from 18:30 - 20:00. Enrollment starts from age 6. Contact Teacher Solihah Madahin at 095-0214255 "
@@ -40,7 +44,7 @@ public class timepray extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
 
-        // เวลา
+        // Time
         final TextView textView = findViewById(R.id.time);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -49,33 +53,33 @@ public class timepray extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
                 String currentTime = sdf.format(new Date());
                 textView.setText(currentTime);
-                handler.postDelayed(this, 1000); // อัปเดตทุกวินาที
+                handler.postDelayed(this, 1000); // Update every second
             }
         });
 
-        // วันเดือนปี
+        // Day, Month, Year
         final TextView textViewDate = findViewById(R.id.Date);
         SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.US);
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
-        // TextView สำหรับแสดงวันที่ Islamic
+        // TextView for displaying Islamic date
         final TextView textViewIslamicDate = findViewById(R.id.date_islam);
 
-        // ดึงข้อมูลจาก API
+        // Fetch data from API
         fetchDateFromAPI(textViewIslamicDate);
 
-        // ข้อความภาพเคลื่อนไหว
+        // Moving text animation
         final TextView infoTextView = findViewById(R.id.infoTextView);
         infoTextView.setText(texts[currentTextIndex]);
 
-        // การตระเตรียม ViewPager
-        int[] images = {R.drawable.m2, R.drawable.m1, R.drawable.m3}; // รูปของคุณ
+        // Prepare ViewPager
+        int[] images = {R.drawable.m2, R.drawable.m1, R.drawable.m3}; // Your images
         final ViewPager viewPager = findViewById(R.id.viewPager);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this, images);
         viewPager.setAdapter(adapter);
 
-        // เปลี่ยนภาพทุกๆ 5 วินาที
+        // Change image every 5 seconds
         final Handler imageHandler = new Handler();
         imageHandler.postDelayed(new Runnable() {
             @Override
@@ -87,7 +91,7 @@ public class timepray extends AppCompatActivity {
             }
         }, IMAGE_CHANGE_INTERVAL);
 
-        // ย้ายข้อความจากขวาไปซ้าย
+        // Slide text from right to left
         final Animation slideLeft = AnimationUtils.loadAnimation(this, R.anim.slide_left);
         slideLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -95,26 +99,82 @@ public class timepray extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // หลังจากภาพเคลื่อนไหวสิ้นสุดลง ให้เปลี่ยนข้อความ
                 currentTextIndex = (currentTextIndex + 1) % texts.length;
                 infoTextView.setText(texts[currentTextIndex]);
-                infoTextView.startAnimation(slideLeft); // เริ่มเคลื่อนไหวอีกครั้ง
+                infoTextView.startAnimation(slideLeft);
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        // เริ่มการเคลื่อนไหวครั้งแรก
         infoTextView.startAnimation(slideLeft);
+
+        // Change background color of Islamic date TextView
+        changeIslamicDateBackgroundColor();
     }
+
+    private void changeIslamicDateBackgroundColor() {
+        final TextView textViewIslamicDate = findViewById(R.id.date_islam);
+        final LinearLayout linearLayout1 = findViewById(R.id.row1); // الLinearLayout الأول
+        final LinearLayout linearLayout2 = findViewById(R.id.row7); // الLinearLayout الثاني
+
+        final Handler bgColorHandler1 = new Handler();
+        final Handler bgColorHandler2 = new Handler();
+
+        // تكرار العملية لل LinearLayout الأول
+        bgColorHandler1.postDelayed(new Runnable() {
+            boolean isColorChanged = false;
+
+            @Override
+            public void run() {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
+                String currentTime = sdf.format(new Date());
+
+                if ((currentTime.compareTo("20:10") >= 0 || currentTime.compareTo("05:10") <= 0))  {
+                    // إذا كان الوقت بين 20:10 و 05:10
+                    linearLayout1.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية
+                    isColorChanged = true;
+                } else {
+                    // إذا كان الوقت خارج النطاق
+                    linearLayout1.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged = false;
+                }
+
+                bgColorHandler1.postDelayed(this, 10000); // التحقق مرة أخرى كل 10 ثواني
+            }
+        }, 10000); // بدء تغيير لون الخلفية فور تحميل النشاط
+
+        // تكرار العملية لل LinearLayout الثاني
+        bgColorHandler2.postDelayed(new Runnable() {
+            boolean isColorChanged = false;
+
+            @Override
+            public void run() {
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
+                String currentTime = sdf.format(new Date());
+
+                if ((currentTime.compareTo("05:10") >= 0 || currentTime.compareTo("06:34") <= 0))  {
+                    // إذا كان الوقت بين 20:10 و 05:10
+                    linearLayout2.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية
+                    isColorChanged = true;
+                } else {
+                    // إذا كان الوقت خارج النطاق
+                    linearLayout2.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged = false;
+                }
+
+                bgColorHandler2.postDelayed(this, 10000); // التحقق مرة أخرى كل 10 ثواني
+            }
+        }, 10000); // بدء تغيير لون الخلفية فور تحميل النشاط
+    }
+
 
     private void fetchDateFromAPI(TextView textViewIslamicDate) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
 
-        // สร้าง URL สำหรับวันที่ปัจจุบัน
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         String currentDate = sdf.format(new Date());
         String url = "https://api.aladhan.com/v1/gToH/" + currentDate;
@@ -130,12 +190,10 @@ public class timepray extends AppCompatActivity {
                         JSONObject data = jsonResponse.getJSONObject("data");
                         JSONObject hijri = data.getJSONObject("hijri");
 
-                        // ดึงข้อมูลที่ต้องการจาก JSON
                         String hijriDay = hijri.getString("day");
                         String hijriMonthEn = hijri.getJSONObject("month").getString("en");
                         String hijriYear = hijri.getString("year");
 
-                        // อัพเดต UI
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -146,13 +204,13 @@ public class timepray extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
-
 
     private static class ViewPagerAdapter extends PagerAdapter {
 
@@ -192,6 +250,5 @@ public class timepray extends AppCompatActivity {
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView((View) object);
         }
-        //hjghgh
     }
 }
