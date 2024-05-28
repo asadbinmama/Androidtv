@@ -142,7 +142,7 @@ public class timepray extends AppCompatActivity {
                 }
 
                 // شرط للLinearLayout الثاني
-                if ((currentTime.compareTo("05:10:02") >= 0 && currentTime.compareTo("06:34:00") <= 0)) {
+                if ((currentTime.compareTo("05:10:01") >= 0 && currentTime.compareTo("06:34:00") <= 0)) {
                     // إذا كان الوقت بين 12:00 و 14:00
                     linearLayout2.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية إلى لون آخر
                     isColorChanged2 = true;
