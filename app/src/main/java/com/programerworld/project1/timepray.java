@@ -117,33 +117,46 @@ public class timepray extends AppCompatActivity {
     private void changeIslamicDateBackgroundColor() {
         final TextView textViewIslamicDate = findViewById(R.id.date_islam);
         final LinearLayout linearLayout1 = findViewById(R.id.row1); // الLinearLayout الأول
+        final LinearLayout linearLayout2 = findViewById(R.id.row7); // الLinearLayout الثاني
 
         final Handler bgColorHandler1 = new Handler();
 
-        // تكرار العملية لل LinearLayout الأول
         bgColorHandler1.postDelayed(new Runnable() {
-            boolean isColorChanged = false;
+            boolean isColorChanged1 = false;
+            boolean isColorChanged2 = false;
 
             @Override
             public void run() {
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
                 String currentTime = sdf.format(new Date());
 
-                if ((currentTime.compareTo("20:10") >= 0 || currentTime.compareTo("05:09") <= 0)) {
+                // شرط للLinearLayout الأول
+                if ((currentTime.compareTo("20:10:00") >= 0 || currentTime.compareTo("05:10:00") <= 0)) {
                     // إذا كان الوقت بين 20:10 و 05:10
                     linearLayout1.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية
-                    isColorChanged = true;
-                } else {
-                    // إذا كان الوقت خارج النطاق
+                    isColorChanged1 = true;
+                } else if (isColorChanged1) {
+                    // إذا كان الشرط الأول قد تحقق، اجعل الخلفية شفافة
                     linearLayout1.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged = false;
+                    isColorChanged1 = false; // إعادة تعيين العلامة
                 }
 
-                bgColorHandler1.postDelayed(this, 2000); // التحقق مرة أخرى كل 10 ثواني
-            }
-        }, 2000); // بدء تغيير لون الخلفية فور تحميل النشاط
+                // شرط للLinearLayout الثاني
+                if ((currentTime.compareTo("05:10:02") >= 0 && currentTime.compareTo("06:34:00") <= 0)) {
+                    // إذا كان الوقت بين 12:00 و 14:00
+                    linearLayout2.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية إلى لون آخر
+                    isColorChanged2 = true;
+                } else if (isColorChanged2) {
+                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
+                    linearLayout2.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged2 = false; // إعادة تعيين العلامة
+                }
 
+                bgColorHandler1.postDelayed(this, 1000); // التحقق مرة أخرى كل 2 ثانية
+            }
+        }, 1000); // بدء تغيير لون الخلفية فور تحميل النشاط
     }
+
 
 
     private void fetchDateFromAPI(TextView textViewIslamicDate) {
