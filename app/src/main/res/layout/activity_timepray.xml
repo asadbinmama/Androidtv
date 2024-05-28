@@ -8,21 +8,23 @@
     tools:context=".timepray">
 
     <!-- เพิ่ม ViewPager -->
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="623dp"
-        android:layout_height="463dp"
+        android:layout_height="452dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
+        app:layout_constraintVertical_bias="0.438" />
 
     <LinearLayout
         android:id="@+id/topbox"
         android:layout_width="620dp"
-        android:layout_height="35dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="450dp"
         android:background="@drawable/mas"
@@ -90,11 +92,10 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/message_box"
-        android:layout_width="627dp"
-        android:layout_height="58dp"
+        android:layout_width="628dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="335dp"
         android:layout_marginBottom="1dp"
         android:background="#000000"
@@ -113,8 +114,9 @@
 
         <TextView
             android:id="@+id/infoTextView"
-            android:layout_width="10000dp"
+            android:layout_width="5000dp"
             android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
             android:text=""
             android:textColor="#ebe8f8"
             android:textSize="25dp" />
@@ -137,14 +139,16 @@
         <TextView
             android:id="@+id/namemasjid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="63dp"
+            android:background="@drawable/topim"
+            android:fontFamily="@font/aref_ruqaa"
             android:gravity="center_horizontal"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="มัสยิดหน้าควน(โรงไฟฟ้า)"
+            android:textAlignment="center"
             android:textColor="#141985"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="26sp" />
 
         <LinearLayout
             android:id="@+id/section"
@@ -158,10 +162,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="  เวลา"
+                android:fontFamily="casual"
+                android:text="เวลา"
+                android:textAlignment="center"
                 android:textColor="#3b6bf8"
-                android:textSize="26sp"
-                android:textStyle="bold"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/azan_header"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -173,20 +178,23 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="อาซาน"
-                android:textColor="#3b6bf8"                android:textSize="26sp"
-                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="#3b6bf8"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/iqomah_header"
                 app:layout_constraintStart_toEndOf="@+id/time_header"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/iqomah_header"
-                android:layout_width="wrap_content"
+                android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/noto_sans"
                 android:text="อีกอมะฮ์"
-                android:textColor="#3b6bf8"                android:textSize="26sp"
-                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="#3b6bf8"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/azan_header"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -220,16 +228,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="22dp"
-                    android:text="   ซุบฮฺี"
-                    android:textColor="#3b6bf8"  />
+                    android:fontFamily="sans-serif-thin"
+                    android:textAlignment="center"
+                    android:text="ซุบฮฺี"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   04:42"
+                    android:textAlignment="center"
+                    android:text="04:42"
                     android:textColor="#35bf17"
                     android:textStyle="bold"/>
 
@@ -238,7 +249,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   05:10"
+                    android:textAlignment="center"
+                    android:text="05:10"
                     android:textColor="#FF0000"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -272,16 +284,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="22dp"
-                    android:text="   ซุฮฺรี"
-                    android:textColor="#3b6bf8" />
+                    android:fontFamily="sans-serif-thin"
+                    android:textAlignment="center"
+                    android:text="ซุฮฺรี"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   12:30"
+                    android:text="12:30"
+                    android:textAlignment="center"
                     android:textColor="#35bf17"
                     android:textStyle="bold"/>
 
@@ -290,7 +305,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   12:45"
+                    android:text="12:45"
+                    android:textAlignment="center"
                     android:textColor="#FF0000"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -321,16 +337,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="22dp"
-                    android:text="   อัสรี"
-                    android:textColor="#3b6bf8" />
+                    android:fontFamily="sans-serif-thin"
+                    android:text="อัสรี"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   15:45"
+                    android:text="15:45"
+                    android:textAlignment="center"
                     android:textColor="#35bf17"
                     android:textStyle="bold"/>
 
@@ -339,7 +358,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="22dp"
-                    android:text="   16:00"
+                    android:text="16:00"
+                    android:textAlignment="center"
                     android:textColor="#FF0000"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -373,17 +393,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="  มัฆริบ"
-                        android:textColor="#3b6bf8"
-                        />
+                        android:fontFamily="sans-serif-thin"
+                        android:text="มัฆริบ"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   18:28"
+                        android:text="18:28"
+                        android:textAlignment="center"
                         android:textColor="#35bf17"
                         android:textStyle="bold"/>
 
@@ -392,7 +414,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   18:38"
+                        android:text="18:38"
+                        android:textAlignment="center"
                         android:textColor="#FF0000"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -423,16 +446,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="   อีซา"
-                        android:textColor="#3b6bf8" />
+                        android:fontFamily="sans-serif-thin"
+                        android:text="อีซา"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   20:00"
+                        android:textAlignment="center"
+                        android:text="20:00"
                         android:textColor="#35bf17"
                         android:textStyle="bold"/>
 
@@ -441,7 +467,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   20:10"
+                        android:text="20:10"
+                        android:textAlignment="center"
                         android:textColor="#FF0000"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -472,9 +499,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="22dp"
-                        android:text="  อิชร็อก"
-                        android:textColor="#3b6bf8" />
+                        android:fontFamily="sans-serif-thin"
+                        android:text="อิชร็อก"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="22dp" />
 
 
                     <TextView
@@ -482,7 +511,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   06:15"
+                        android:text="06:15"
+                        android:textAlignment="center"
                         android:textColor="#35bf17"
                         android:textStyle="bold" />
 
@@ -491,7 +521,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="22dp"
-                        android:text="   06:34"
+                        android:text="06:34"
+                        android:textAlignment="center"
                         android:textColor="#FF0000"
                         android:textStyle="bold" />
                 </LinearLayout>

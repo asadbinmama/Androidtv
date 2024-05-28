@@ -4,66 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282828"
+    android:background="#2e2b2d"
     tools:context="com.programerworld.project1.MainActivity">
 
     <TextView
         android:id="@+id/Signuptitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/noto_sans"
         android:gravity="center"
         android:text="รหัสมัสยิด 5 หลัก"
-        android:textSize="70dp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
         android:textColor="@color/white"
+        android:textSize="50dp"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/numcode"
-        android:layout_width="550dp"
-        android:layout_height="100dp"
+        android:layout_width="600dp"
+        android:layout_height="85dp"
         android:layout_below="@id/Signuptitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="#30ffffff"
-        android:drawablePadding="50dp"
+        android:background="#BFBDBD"
+        android:fontFamily="@font/noto_sans"
         android:gravity="center_horizontal"
         android:hint="ตัวอย่าง 90050"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="50sp"
         android:inputType="number"
-        />
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textColorHint="@color/white"
+        android:textSize="40sp" />
 
     <Button
         android:id="@+id/button_in_timepray"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:layout_below="@id/numcode"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="ตกลง"
-        android:textColor="#0E0D0D"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
         android:onClick="actimepray"
+        android:text="ตกลง"
+        android:textColor="#0E0D0D"
+        android:textSize="30sp"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/open_button"
-        android:layout_width="270dp"
-        android:layout_height="66dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/button_in_timepray"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="91dp"
+        android:layout_marginTop="20dp"
         android:background="#00FFFFFF"
+        android:fontFamily="@font/noto_sans"
         android:onClick="openPrivacyPolicy"
         android:text="@string/thai"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="188dp"
+        android:layout_height="104dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="384dp"
+        android:layout_marginEnd="389dp"
+        android:layout_marginBottom="409dp"
+        android:gravity="center"
+        app:srcCompat="@drawable/icon" />
 </RelativeLayout>
