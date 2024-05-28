@@ -118,12 +118,19 @@ public class timepray extends AppCompatActivity {
         final TextView textViewIslamicDate = findViewById(R.id.date_islam);
         final LinearLayout linearLayout1 = findViewById(R.id.row1); // الLinearLayout الأول
         final LinearLayout linearLayout2 = findViewById(R.id.row7); // الLinearLayout الثاني
-
+        final LinearLayout linearLayout3 = findViewById(R.id.row2);
+        final LinearLayout linearLayout4 = findViewById(R.id.row3);
+        final LinearLayout linearLayout5 = findViewById(R.id.row4);
+        final LinearLayout linearLayout6 = findViewById(R.id.row5);
         final Handler bgColorHandler1 = new Handler();
 
         bgColorHandler1.postDelayed(new Runnable() {
             boolean isColorChanged1 = false;
             boolean isColorChanged2 = false;
+            boolean isColorChanged3 = false;
+            boolean isColorChanged4 = false;
+            boolean isColorChanged5 = false;
+            boolean isColorChanged6 = false;
 
             @Override
             public void run() {
@@ -131,9 +138,9 @@ public class timepray extends AppCompatActivity {
                 String currentTime = sdf.format(new Date());
 
                 // شرط للLinearLayout الأول
-                if ((currentTime.compareTo("20:10:00") >= 0 || currentTime.compareTo("05:10:00") <= 0)) {
+                if ((currentTime.compareTo("20:10:01") >= 0 || currentTime.compareTo("05:10:00") <= 0)) {
                     // إذا كان الوقت بين 20:10 و 05:10
-                    linearLayout1.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية
+                    linearLayout1.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية
                     isColorChanged1 = true;
                 } else if (isColorChanged1) {
                     // إذا كان الشرط الأول قد تحقق، اجعل الخلفية شفافة
@@ -144,13 +151,60 @@ public class timepray extends AppCompatActivity {
                 // شرط للLinearLayout الثاني
                 if ((currentTime.compareTo("05:10:01") >= 0 && currentTime.compareTo("06:34:00") <= 0)) {
                     // إذا كان الوقت بين 12:00 و 14:00
-                    linearLayout2.setBackgroundResource(android.R.color.darker_gray); // تغيير لون الخلفية إلى لون آخر
+                    linearLayout2.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
                     isColorChanged2 = true;
                 } else if (isColorChanged2) {
                     // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
                     linearLayout2.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
                     isColorChanged2 = false; // إعادة تعيين العلامة
                 }
+
+                // شرط للLinearLayout الثالث
+                if ((currentTime.compareTo("06:34:01") >= 0 && currentTime.compareTo("12:45:00") <= 0)) {
+                    // إذا كان الوقت بين 12:00 و 14:00
+                    linearLayout3.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    isColorChanged3 = true;
+                } else if (isColorChanged3) {
+                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
+                    linearLayout3.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged3 = false; // إعادة تعيين العلامة
+                }
+
+                // شرط للLinearLayout االرابع
+                if ((currentTime.compareTo("12:45:01") >= 0 && currentTime.compareTo("16:00:00") <= 0)) {
+                    // إذا كان الوقت بين 12:00 و 14:00
+                    linearLayout4.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    isColorChanged4 = true;
+                } else if (isColorChanged4) {
+                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
+                    linearLayout4.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged4 = false; // إعادة تعيين العلامة
+                }
+
+                // شرط للLinearLayout االخامس
+                if ((currentTime.compareTo("16:00:01") >= 0 && currentTime.compareTo("18:38:00") <= 0)) {
+                    // إذا كان الوقت بين 12:00 و 14:00
+                    linearLayout5.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    isColorChanged5 = true;
+                } else if (isColorChanged5) {
+                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
+                    linearLayout5.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged5 = false; // إعادة تعيين العلامة
+                }
+
+                // شرط للLinearLayout االسادس
+                if ((currentTime.compareTo("18:38:01") >= 0 && currentTime.compareTo("20:10:00") <= 0)) {
+                    // إذا كان الوقت بين 12:00 و 14:00
+                    linearLayout6.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    isColorChanged6 = true;
+                } else if (isColorChanged6) {
+                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
+                    linearLayout6.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
+                    isColorChanged6 = false; // إعادة تعيين العلامة
+                }
+
+
+
 
                 bgColorHandler1.postDelayed(this, 1000); // التحقق مرة أخرى كل 2 ثانية
             }
