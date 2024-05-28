@@ -145,6 +145,7 @@ public class timepray extends AppCompatActivity {
 
     }
 
+
     private void fetchDateFromAPI(TextView textViewIslamicDate) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
