@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Project1</string>
     <string name="thai">นโยบายความเป็นส่วนตัว</string>
+    <string name="date">Date</string>
+    <string name="datehijroh">DateHijroh</string>
 </resources>
