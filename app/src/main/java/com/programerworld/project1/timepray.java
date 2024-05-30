@@ -1,5 +1,7 @@
 package com.programerworld.project1;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,7 +14,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +24,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -46,10 +47,25 @@ public class timepray extends AppCompatActivity {
     private List<Long> countdownTimes;
     private TextView countdownTimerTextView;
 
+    private static final String VISITOR_COUNT_KEY = "visitorCountKey";
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("VisitorCounterPrefs", Context.MODE_PRIVATE);
+        int visitorCount = sharedPreferences.getInt(VISITOR_COUNT_KEY, 0);
+        visitorCount++;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(VISITOR_COUNT_KEY, visitorCount);
+        editor.apply();
+
+        // Display visitor count
+        TextView visitorCountTextView = findViewById(R.id.visitor_count);
+        visitorCountTextView.setText("Visitor Count: " + visitorCount);
 
         // Time
         final TextView textView = findViewById(R.id.time);
@@ -129,7 +145,6 @@ public class timepray extends AppCompatActivity {
         // Initialize countdown timer TextView
         countdownTimerTextView = findViewById(R.id.countdown_timer);
         startNextTimer();
-
     }
 
     private void changeIslamicDateBackgroundColor() {
@@ -221,15 +236,10 @@ public class timepray extends AppCompatActivity {
                     isColorChanged6 = false; // إعادة تعيين العلامة
                 }
 
-
-
-
                 bgColorHandler1.postDelayed(this, 1000); // التحقق مرة أخرى كل 2 ثانية
             }
         }, 1000); // بدء تغيير لون الخلفية فور تحميل النشاط
     }
-
-
 
     private void fetchDateFromAPI(TextView textViewIslamicDate) {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -265,8 +275,7 @@ public class timepray extends AppCompatActivity {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
