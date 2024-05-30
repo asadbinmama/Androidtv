@@ -65,7 +65,7 @@ public class timepray extends AppCompatActivity {
 
         // Display visitor count
         TextView visitorCountTextView = findViewById(R.id.visitor_count);
-        visitorCountTextView.setText("Visitor Count: " + visitorCount);
+        visitorCountTextView.setText("               จำนวนผู้เข้าชม : " + visitorCount);
 
         // Time
         final TextView textView = findViewById(R.id.time);
