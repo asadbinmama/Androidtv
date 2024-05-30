@@ -579,8 +579,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="                 Visitor Count : 0"
-            android:textColor="#FF9800"
+            android:text="                 จำนวนผู้เข้าชม : 0"
+            android:textColor="#00BCD4"
             android:textSize="20sp" />
 
 
