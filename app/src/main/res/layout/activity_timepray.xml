@@ -550,27 +550,30 @@
                 <!--Continue repeating the pattern for each item in the list -->
             </LinearLayout>
 
-            <TextView
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/Signuptitle"
-                android:layout_marginTop="20dp"
-                android:text="จะถึงเวลาละหมาดในอีก"
-                android:textAlignment="center"
-                android:textSize="30dp"
+                android:orientation="vertical">
 
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="จะถึงเวลาละหมาดในอีก"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
 
-            <TextView
-                android:id="@+id/countdown_timer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/Signuptitle"
-                android:layout_centerHorizontal="true"
-                android:text="00:00:00"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="40sp" />
+                <TextView
+                    android:id="@+id/tvCountdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

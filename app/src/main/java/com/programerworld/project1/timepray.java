@@ -25,9 +25,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,16 +38,19 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class timepray extends AppCompatActivity {
 
+    private TextView tvCountdown;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+    //-------------
+
     private static final int IMAGE_CHANGE_INTERVAL = 5000; // Image change interval in milliseconds (5 seconds)
     private String[] texts = {
             "             มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255",
             " Masjid Na Khwan Nuruddin is open for new student admissions for the year 2567. Evening Quran classes, time from 18:30 - 20:00. Enrollment starts from age 6. Contact Teacher Solihah Madahin at 095-0214255 "
     };
+    //----------------
     private int currentTextIndex = 0;
-    private int currentTimerIndex = 0;
-    private CountDownTimer countDownTimer;
-    private List<Long> countdownTimes;
-    private TextView countdownTimerTextView;
 
     private static final String VISITOR_COUNT_KEY = "visitorCountKey";
     private SharedPreferences sharedPreferences;
@@ -54,6 +59,41 @@ public class timepray extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
+
+
+        //------------------------
+        tvCountdown = findViewById(R.id.tvCountdown);
+
+        // ตัวอย่างการตั้งค่าช่วงเวลาละหมาด
+        long fajrTime = getTimeInMillis("04:42");
+        long dhuhrTime = getTimeInMillis("12:30");
+        long asrTime = getTimeInMillis("15:45");
+        long maghribTime = getTimeInMillis("18:28");
+        long ishaTime = getTimeInMillis("20:00");
+
+        // อัปเดตเวลาเหลือในการละหมาด
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                long currentTime = System.currentTimeMillis();
+                long nextPrayerTime = getNextPrayerTime(currentTime, fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime);
+
+                long diff = nextPrayerTime - currentTime;
+                if (diff > 0) {
+                    long hours = TimeUnit.MILLISECONDS.toHours(diff);
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(diff) % 60;
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(diff) % 60;
+
+                    tvCountdown.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
+                } else {
+                    tvCountdown.setText("00:00:00");
+                }
+
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.post(runnable);
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("VisitorCounterPrefs", Context.MODE_PRIVATE);
@@ -135,20 +175,36 @@ public class timepray extends AppCompatActivity {
 
         // Change background color of Islamic date TextView
         changeIslamicDateBackgroundColor();
-
-        // Initialize countdown times (in milliseconds)
-        countdownTimes = new ArrayList<>();
-        countdownTimes.add(3600000L); // 1 hour in milliseconds
-        countdownTimes.add(1800000L); // 30 minutes in milliseconds
-        countdownTimes.add(600000L); // 10 minutes in milliseconds
-
-        // Initialize countdown timer TextView
-        countdownTimerTextView = findViewById(R.id.countdown_timer);
-        startNextTimer();
     }
 
+    //---------------
+    private long getTimeInMillis(String time) {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            calendar.setTime(dateFormat.parse(time));
+            Calendar current = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, current.get(Calendar.YEAR));
+            calendar.set(Calendar.MONTH, current.get(Calendar.MONTH));
+            calendar.set(Calendar.DAY_OF_MONTH, current.get(Calendar.DAY_OF_MONTH));
+            return calendar.getTimeInMillis();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    private long getNextPrayerTime(long currentTime, long... prayerTimes) {
+        for (long prayerTime : prayerTimes) {
+            if (prayerTime > currentTime) {
+                return prayerTime;
+            }
+        }
+        return prayerTimes[0] + TimeUnit.DAYS.toMillis(1); // Return the next day's first prayer time
+    }
+    //-------------------------
+
     private void changeIslamicDateBackgroundColor() {
-        final TextView textViewIslamicDate = findViewById(R.id.date_islam);
         final LinearLayout linearLayout1 = findViewById(R.id.row1); // first LinearLayout
         final LinearLayout linearLayout2 = findViewById(R.id.row6); // LinearLayout
         final LinearLayout linearLayout3 = findViewById(R.id.row2);
@@ -187,58 +243,58 @@ public class timepray extends AppCompatActivity {
                     linearLayout2.setBackgroundResource(android.R.color.holo_blue_light); // Change the background color to another color
                     isColorChanged2 = true;
                 } else if (isColorChanged2) {
-                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
-                    linearLayout2.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged2 = false; // إعادة تعيين العلامة
+                    // If the second condition is met, make the background transparent
+                    linearLayout2.setBackgroundColor(Color.TRANSPARENT); // Use transparent color
+                    isColorChanged2 = false; // Reset the flag
                 }
 
-                // شرط للLinearLayout الثالث
+                // Condition for the third LinearLayout
                 if ((currentTime.compareTo("06:34:01") >= 0 && currentTime.compareTo("12:45:00") <= 0)) {
-                    // إذا كان الوقت بين 12:00 و 14:00
-                    linearLayout3.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    // If the time is between 12:00 and 14:00
+                    linearLayout3.setBackgroundResource(android.R.color.holo_blue_light); // Change the background color to another color
                     isColorChanged3 = true;
                 } else if (isColorChanged3) {
-                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
-                    linearLayout3.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged3 = false; // إعادة تعيين العلامة
+                    // If the second condition is met, make the background transparent
+                    linearLayout3.setBackgroundColor(Color.TRANSPARENT); // Use transparent color
+                    isColorChanged3 = false; // Reset the flag
                 }
 
-                // شرط للLinearLayout االرابع
+                // Condition for the fourth LinearLayout
                 if ((currentTime.compareTo("12:45:01") >= 0 && currentTime.compareTo("16:00:00") <= 0)) {
-                    // إذا كان الوقت بين 12:00 و 14:00
-                    linearLayout4.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    // If the time is between 12:00 and 14:00
+                    linearLayout4.setBackgroundResource(android.R.color.holo_blue_light); // Change the background color to another color
                     isColorChanged4 = true;
                 } else if (isColorChanged4) {
-                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
-                    linearLayout4.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged4 = false; // إعادة تعيين العلامة
+                    // If the second condition is met, make the background transparent
+                    linearLayout4.setBackgroundColor(Color.TRANSPARENT); // Use transparent color
+                    isColorChanged4 = false; // Reset the flag
                 }
 
-                // شرط للLinearLayout االخامس
+                // Condition for the fifth LinearLayout
                 if ((currentTime.compareTo("16:00:01") >= 0 && currentTime.compareTo("18:38:00") <= 0)) {
-                    // إذا كان الوقت بين 12:00 و 14:00
-                    linearLayout5.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    // If the time is between 12:00 and 14:00
+                    linearLayout5.setBackgroundResource(android.R.color.holo_blue_light); // Change the background color to another color
                     isColorChanged5 = true;
                 } else if (isColorChanged5) {
-                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
-                    linearLayout5.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged5 = false; // إعادة تعيين العلامة
+                    // If the second condition is met, make the background transparent
+                    linearLayout5.setBackgroundColor(Color.TRANSPARENT); // Use transparent color
+                    isColorChanged5 = false; // Reset the flag
                 }
 
-                // شرط للLinearLayout االسادس
+                // Condition for the sixth LinearLayout
                 if ((currentTime.compareTo("18:38:01") >= 0 && currentTime.compareTo("20:10:00") <= 0)) {
-                    // إذا كان الوقت بين 12:00 و 14:00
-                    linearLayout6.setBackgroundResource(android.R.color.holo_blue_light); // تغيير لون الخلفية إلى لون آخر
+                    // If the time is between 12:00 and 14:00
+                    linearLayout6.setBackgroundResource(android.R.color.holo_blue_light); // Change the background color to another color
                     isColorChanged6 = true;
                 } else if (isColorChanged6) {
-                    // إذا كان الشرط الثاني قد تحقق، اجعل الخلفية شفافة
-                    linearLayout6.setBackgroundColor(Color.TRANSPARENT); // استخدام اللون الشفاف
-                    isColorChanged6 = false; // إعادة تعيين العلامة
+                    // If the second condition is met, make the background transparent
+                    linearLayout6.setBackgroundColor(Color.TRANSPARENT); // Use transparent color
+                    isColorChanged6 = false; // Reset the flag
                 }
 
-                bgColorHandler1.postDelayed(this, 1000); // التحقق مرة أخرى كل 2 ثانية
+                bgColorHandler1.postDelayed(this, 1000); //Check back every 2 seconds
             }
-        }, 1000); // بدء تغيير لون الخلفية فور تحميل النشاط
+        }, 1000); // Start changing the background color as soon as the activity loads
     }
 
     private void fetchDateFromAPI(TextView textViewIslamicDate) {
@@ -260,7 +316,6 @@ public class timepray extends AppCompatActivity {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         JSONObject data = jsonResponse.getJSONObject("data");
                         JSONObject hijri = data.getJSONObject("hijri");
-
                         String hijriDay = hijri.getString("day");
                         String hijriMonthEn = hijri.getJSONObject("month").getString("en");
                         String hijriYear = hijri.getString("year");
@@ -280,31 +335,6 @@ public class timepray extends AppCompatActivity {
                 }
             }
         }).start();
-    }
-
-    private void startNextTimer() {
-        if (currentTimerIndex < countdownTimes.size()) {
-            long countdownTime = countdownTimes.get(currentTimerIndex);
-            countDownTimer = new CountDownTimer(countdownTime, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    long hours = millisUntilFinished / (1000 * 60 * 60);
-                    long minutes = (millisUntilFinished / (1000 * 60)) % 60;
-                    long seconds = (millisUntilFinished / 1000) % 60;
-                    String timeFormatted = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds);
-                    countdownTimerTextView.setText(timeFormatted);
-                }
-
-                @Override
-                public void onFinish() {
-                    currentTimerIndex++;
-                    startNextTimer();
-                }
-            }.start();
-        } else {
-            currentTimerIndex = 0; // Reset index if needed
-            startNextTimer();
-        }
     }
 
     private static class ViewPagerAdapter extends PagerAdapter {
