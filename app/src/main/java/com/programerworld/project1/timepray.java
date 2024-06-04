@@ -1,10 +1,10 @@
 package com.programerworld.project1;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +14,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,45 +32,76 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class timepray extends AppCompatActivity {
 
+    // Count down
     private TextView tvCountdown;
-    private Handler handler = new Handler();
-    private Runnable runnable;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-    //-------------
+    private final Handler handler = new Handler();
 
+    // Language
+    private boolean isThai = true;
+
+    private TextView timeHeader;
+    private TextView azanHeader;
+    private TextView iqomahHeader;
+    private TextView subuh;
+    private TextView suhri;
+    private TextView asri;
+    private TextView maqrib;
+    private TextView Isa;
+    private TextView israk;
+    private TextView Time;
+    private final String[] thaiTexts = {"เวลา", "อาซาน", "อิกอมะห์", "ซุบฮี", "ซุฮรี", "อัสรี", "มัฆริบ", "อีซา", "อิชร็อก", "เวลา"};
+    private final String[] englishTexts = {"Time", "Azan", "Iqomah", "subuh", "suhri", "asri", "maqrib", "Isa", "israk", "Time"};
+
+    //-------------
     private static final int IMAGE_CHANGE_INTERVAL = 5000; // Image change interval in milliseconds (5 seconds)
-    private String[] texts = {
-            "             มัสยิดหน้าควน นูรุดดีน เปิดรับสมัครนักเรียนใหม่ ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำ หลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255",
+    private final String[] texts = {
+            " มัสยิดหน้าควนนูรุดดีนเปิดรับสมัครนักเรียนใหม่ปีการศึกษา 2567 เรียนอัลกุรอานภาคค่ำหลักสูตรกีรออาตี เวลา 18.30 - 20.00 น. รับสมัครตั้งแต่อายุ 6 ปีขึ้นไป สอบถาม ครูซอลีฮะห์ หมัดอะหิน 095-0214255",
             " Masjid Na Khwan Nuruddin is open for new student admissions for the year 2567. Evening Quran classes, time from 18:30 - 20:00. Enrollment starts from age 6. Contact Teacher Solihah Madahin at 095-0214255 "
     };
     //----------------
     private int currentTextIndex = 0;
-
     private static final String VISITOR_COUNT_KEY = "visitorCountKey";
-    private SharedPreferences sharedPreferences;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timepray);
 
+        //--------
+        timeHeader = findViewById(R.id.time_header);
+        azanHeader = findViewById(R.id.azan_header);
+        iqomahHeader = findViewById(R.id.iqomah_header);
+        subuh = findViewById(R.id.subuh);
+        suhri = findViewById(R.id.suhri);
+        asri = findViewById(R.id.asri);
+        maqrib = findViewById(R.id.maqrib);
+        Isa = findViewById(R.id.Isa);
+        israk = findViewById(R.id.israk);
+        Time = findViewById(R.id.Time);
+        startTextSwitcher();
 
         //------------------------
         tvCountdown = findViewById(R.id.tvCountdown);
-
         // ตัวอย่างการตั้งค่าช่วงเวลาละหมาด
         long fajrTime = getTimeInMillis("04:42");
+        long iqomahfajr = getTimeInMillis("05:10");
         long dhuhrTime = getTimeInMillis("12:30");
+        long iqomahdhur = getTimeInMillis("12:45");
         long asrTime = getTimeInMillis("15:45");
+        long iqomahasr = getTimeInMillis("16:00");
         long maghribTime = getTimeInMillis("18:28");
+        long iqomahmaghrib = getTimeInMillis("18:38");
         long ishaTime = getTimeInMillis("20:00");
+        long iqomahIsha = getTimeInMillis("20:10");
+        long ishrak = getTimeInMillis("06:15");
 
         // อัปเดตเวลาเหลือในการละหมาด
-        runnable = new Runnable() {
+        Runnable runnable = new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
                 long currentTime = System.currentTimeMillis();
-                long nextPrayerTime = getNextPrayerTime(currentTime, fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime);
+                long nextPrayerTime = getNextPrayerTime(currentTime, fajrTime, iqomahfajr, ishrak, dhuhrTime, iqomahdhur, asrTime, iqomahasr, maghribTime, iqomahmaghrib, ishaTime, iqomahIsha);
 
                 long diff = nextPrayerTime - currentTime;
                 if (diff > 0) {
@@ -96,18 +121,14 @@ public class timepray extends AppCompatActivity {
         handler.post(runnable);
 
         // Initialize SharedPreferences
-        sharedPreferences = getSharedPreferences("VisitorCounterPrefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("VisitorCounterPrefs", Context.MODE_PRIVATE);
         int visitorCount = sharedPreferences.getInt(VISITOR_COUNT_KEY, 0);
         visitorCount++;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(VISITOR_COUNT_KEY, visitorCount);
         editor.apply();
 
-        // Display visitor count
-        TextView visitorCountTextView = findViewById(R.id.visitor_count);
-        visitorCountTextView.setText("               จำนวนผู้เข้าชม : " + visitorCount);
-
-        // Time
+        // current time
         final TextView textView = findViewById(R.id.time);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -172,9 +193,45 @@ public class timepray extends AppCompatActivity {
         });
 
         infoTextView.startAnimation(slideLeft);
-
         // Change background color of Islamic date TextView
         changeIslamicDateBackgroundColor();
+    }
+    //------------
+    private void startTextSwitcher() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switchText();
+                handler.postDelayed(this, 10000); // 10 วินาที
+            }
+        }, 10000);
+    }
+
+    private void switchText() {
+        if (isThai) {
+            timeHeader.setText(englishTexts[0]);
+            azanHeader.setText(englishTexts[1]);
+            iqomahHeader.setText(englishTexts[2]);
+            subuh.setText(englishTexts[3]);
+            suhri.setText(englishTexts[4]);
+            asri.setText(englishTexts[5]);
+            maqrib.setText(englishTexts[6]);
+            Isa.setText(englishTexts[7]);
+            israk.setText(englishTexts[8]);
+            Time.setText(englishTexts[9]);
+        } else {
+            timeHeader.setText(thaiTexts[0]);
+            azanHeader.setText(thaiTexts[1]);
+            iqomahHeader.setText(thaiTexts[2]);
+            subuh.setText(thaiTexts[3]);
+            suhri.setText(thaiTexts[4]);
+            asri.setText(thaiTexts[5]);
+            maqrib.setText(thaiTexts[6]);
+            Isa.setText(thaiTexts[7]);
+            israk.setText(thaiTexts[8]);
+            Time.setText(thaiTexts[9]);
+        }
+        isThai = !isThai; // สลับสถานะภาษา
     }
 
     //---------------
@@ -182,7 +239,7 @@ public class timepray extends AppCompatActivity {
         try {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
-            calendar.setTime(dateFormat.parse(time));
+            calendar.setTime(Objects.requireNonNull(dateFormat.parse(time)));
             Calendar current = Calendar.getInstance();
             calendar.set(Calendar.YEAR, current.get(Calendar.YEAR));
             calendar.set(Calendar.MONTH, current.get(Calendar.MONTH));
@@ -306,33 +363,23 @@ public class timepray extends AppCompatActivity {
         String currentDate = sdf.format(new Date());
         String url = "https://api.aladhan.com/v1/gToH/" + currentDate;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Request request = new Request.Builder().url(url).build();
-                try (Response response = client.newCall(request).execute()) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        String responseData = response.body().string();
-                        JSONObject jsonResponse = new JSONObject(responseData);
-                        JSONObject data = jsonResponse.getJSONObject("data");
-                        JSONObject hijri = data.getJSONObject("hijri");
-                        String hijriDay = hijri.getString("day");
-                        String hijriMonthEn = hijri.getJSONObject("month").getString("en");
-                        String hijriYear = hijri.getString("year");
+        new Thread(() -> {
+            Request request = new Request.Builder().url(url).build();
+            try (Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String responseData = response.body().string();
+                    JSONObject jsonResponse = new JSONObject(responseData);
+                    JSONObject data = jsonResponse.getJSONObject("data");
+                    JSONObject hijri = data.getJSONObject("hijri");
+                    String hijriDay = hijri.getString("day");
+                    String hijriMonthEn = hijri.getJSONObject("month").getString("en");
+                    String hijriYear = hijri.getString("year");
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                textViewIslamicDate.setText(String.format(Locale.US,
-                                        "%s %s %s", hijriDay, hijriMonthEn, hijriYear));
-                            }
-                        });
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    runOnUiThread(() -> textViewIslamicDate.setText(String.format(Locale.US,
+                            "%s %s %s", hijriDay, hijriMonthEn, hijriYear)));
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
     }

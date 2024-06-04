@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="DisableBaselineAlignment,MissingConstraints">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -77,12 +77,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Time"
+                android:text="เวลา :"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/time"
@@ -112,8 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbox"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/topbox">
 
         <TextView
             android:id="@+id/infoTextView"
@@ -122,7 +123,7 @@
             android:fontFamily="serif-monospace"
             android:text=""
             android:textColor="#ebe8f8"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -136,8 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topbox"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/namemasjid"
@@ -151,7 +151,8 @@
             android:text="มัสยิดหน้าควน(โรงไฟฟ้า)"
             android:textAlignment="center"
             android:textColor="#141985"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/section"
@@ -165,14 +166,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="casual"
+                android:fontFamily="@font/allerta"
                 android:text="เวลา"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textColor="#3b6bf8"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/azan_header"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/azan_header"
@@ -181,23 +184,27 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="อาซาน"
+                android:textStyle="bold"
                 android:textAlignment="center"
+                android:fontFamily="@font/allerta"
                 android:textColor="#3b6bf8"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/iqomah_header"
                 app:layout_constraintStart_toEndOf="@+id/time_header"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/iqomah_header"
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="อีกอมะฮ์"
+                android:fontFamily="@font/allerta"
+                android:text="@string/Iqomah"
                 android:textAlignment="center"
                 android:textColor="#3b6bf8"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/azan_header"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -213,13 +220,13 @@
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="2.5dp"
-                android:layout_below="@id/linearLayout"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10px"
+                android:layout_marginBottom="10dp"
                 android:background="@color/divider"
                 android:paddingStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:id="@+id/row1"
@@ -228,14 +235,16 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/subuh"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"
+                    android:fontFamily="@font/noto_sans"
                     android:text="ซุบฮฺี"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="22dp" />
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -244,8 +253,9 @@
                     android:text="04:42"
                     android:textAlignment="center"
                     android:textColor="#1f7d14"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -254,8 +264,9 @@
                     android:text="05:10"
                     android:textAlignment="center"
                     android:textColor="#FF0000"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
             <!-- Repeat the previous pattern for the rest of the items in the list -->
@@ -264,34 +275,35 @@
                 android:id="@+id/line2"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_below="@id/row1"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10px"
+                android:layout_marginBottom="10dp"
                 android:background="@color/divider"
                 android:paddingStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:id="@+id/row2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line2"
                 android:layout_marginTop="-6dp"
                 android:orientation="horizontal">
 
                 <!-- Edit the content for each item in the list -->
 
                 <TextView
+                    android:id="@+id/suhri"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"
+                    android:fontFamily="@font/noto_sans"
                     android:text="ซุฮฺรี"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="22dp" />
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -300,8 +312,9 @@
                     android:text="12:30"
                     android:textAlignment="center"
                     android:textColor="#1f7d14"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -310,22 +323,24 @@
                     android:text="12:45"
                     android:textAlignment="center"
                     android:textColor="#FF0000"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"/>
             </LinearLayout>
 
             <View
                 android:id="@+id/line3"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_below="@id/row2"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10px"
+                android:layout_marginBottom="10dp"
                 android:background="@color/divider"
                 android:paddingStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                tools:ignore="RtlSymmetry" />
+
             <!-- Repeat the previous pattern for the rest of the items in the list -->
             <LinearLayout
                 android:id="@+id/row3"
@@ -337,14 +352,16 @@
                 <!-- Edit the content for each item in the list -->
 
                 <TextView
+                    android:id="@+id/asri"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-thin"
+                    android:fontFamily="@font/noto_sans"
                     android:text="อัสรี"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="22dp" />
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -353,8 +370,9 @@
                     android:text="15:45"
                     android:textAlignment="center"
                     android:textColor="#1f7d14"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -363,22 +381,23 @@
                     android:text="16:00"
                     android:textAlignment="center"
                     android:textColor="#FF0000"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"/>
             </LinearLayout>
 
             <View
                 android:id="@+id/line4"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_below="@id/row3"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10px"
+                android:layout_marginBottom="10dp"
                 android:background="@color/divider"
                 android:paddingStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -394,14 +413,16 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/maqrib"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-thin"
+                        android:fontFamily="@font/noto_sans"
                         android:text="มัฆริบ"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="22sp"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -410,8 +431,9 @@
                         android:text="18:28"
                         android:textAlignment="center"
                         android:textColor="#1f7d14"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -420,8 +442,9 @@
                         android:text="18:38"
                         android:textAlignment="center"
                         android:textColor="#FF0000"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
@@ -432,10 +455,10 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/divider"
-                    android:paddingStart="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    tools:ignore="ObsoleteLayoutParam" />
 
                 <!-- Repeat the previous pattern for the rest of the items in the list -->
                 <LinearLayout
@@ -448,14 +471,16 @@
                     <!-- Edit the content for each item in the list -->
 
                     <TextView
+                        android:id="@+id/Isa"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-thin"
+                        android:fontFamily="@font/noto_sans"
                         android:text="อีซา"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="22sp"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -464,8 +489,9 @@
                         android:text="20:00"
                         android:textAlignment="center"
                         android:textColor="#1f7d14"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -474,22 +500,23 @@
                         android:text="20:10"
                         android:textAlignment="center"
                         android:textColor="#FF0000"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
                     android:id="@+id/line6"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_below="@id/row5"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/divider"
                     android:paddingStart="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    tools:ignore="RtlSymmetry" />
 
 
                 <LinearLayout
@@ -502,14 +529,16 @@
                     <!-- Edit the content for each item in the list -->
 
                     <TextView
+                        android:id="@+id/israk"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-thin"
+                        android:fontFamily="@font/noto_sans"
                         android:text="อิชร็อก"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="22dp" />
+                        android:textSize="22sp"
+                        tools:ignore="HardcodedText" />
 
 
                     <TextView
@@ -519,8 +548,9 @@
                         android:text="06:15"
                         android:textAlignment="center"
                         android:textColor="#1f7d14"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -529,22 +559,23 @@
                         android:text="06:34"
                         android:textAlignment="center"
                         android:textColor="#FF0000"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
 
                 <View
                     android:id="@+id/line8"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_below="@id/row6"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10px"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/divider"
                     android:paddingStart="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    tools:ignore="RtlSymmetry" />
 
                 <!-- Repeat the previous pattern for the rest of the items in the list -->
                 <!--Continue repeating the pattern for each item in the list -->
@@ -558,34 +589,30 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/time_to_pray"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="จะถึงเวลาละหมาดในอีก"
                     android:textColor="@color/black"
                     android:textAlignment="center"
-                    android:textSize="30dp" />
+                    android:textSize="30sp"
+                    tools:ignore="HardcodedText"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/tvCountdown"
-                    android:layout_width="match_parent"
+                    android:layout_width="234dp"
                     android:layout_height="wrap_content"
                     android:text="00:00:00"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="40sp" />
+                    android:textSize="40sp"
+                    tools:ignore="HardcodedText"
+                    android:layout_gravity="center"
+                    android:background="#98d9ff" />
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/visitor_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text=" จำนวนผู้เข้าชม : 0"
-            android:textColor="#3F51B5"
-            android:textSize="20sp" />
-
 
     </LinearLayout>
 

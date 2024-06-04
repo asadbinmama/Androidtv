@@ -3,4 +3,7 @@
     <string name="thai">นโยบายความเป็นส่วนตัว</string>
     <string name="date">Date</string>
     <string name="datehijroh">DateHijroh</string>
+    <string name="Iqomah">อีกอมะฮ์</string>
+    <string name="app_name1">MeinApp</string>
+    <string name="hello_world">Hallo Welt</string>
 </resources>
