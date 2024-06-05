@@ -592,10 +592,10 @@
                     android:id="@+id/time_to_pray"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="จะถึงเวลาละหมาดในอีก"
+                    android:text="เวลาละหมาดจะถึงในอีก"
                     android:textColor="@color/black"
                     android:textAlignment="center"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     tools:ignore="HardcodedText"
                     android:layout_gravity="center" />
 

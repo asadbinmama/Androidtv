@@ -36,6 +36,7 @@ public class timepray extends AppCompatActivity {
     private TextView tvCountdown;
     private final Handler handler = new Handler();
 
+
     // Language
     private boolean isThai = true;
 
@@ -49,8 +50,9 @@ public class timepray extends AppCompatActivity {
     private TextView Isa;
     private TextView israk;
     private TextView Time;
-    private final String[] thaiTexts = {"เวลา", "อาซาน", "อิกอมะห์", "ซุบฮี", "ซุฮรี", "อัสรี", "มัฆริบ", "อีซา", "อิชร็อก", "เวลา"};
-    private final String[] englishTexts = {"Time", "Azan", "Iqomah", "subuh", "suhri", "asri", "maqrib", "Isa", "israk", "Time"};
+    private TextView time_to_pray;
+    private final String[] thaiTexts = {"เวลา", "อาซาน", "อิกอมะห์", "ซุบฮี", "ซุฮรี", "อัสรี", "มัฆริบ", "อีซา", "อิชร็อก", "เวลา", "เวลาละหมาดจะถึงในอีก"};
+    private final String[] englishTexts = {"Time:", "Azan", "Iqomah", "subuh", "suhri", "asri", "maqrib", "Isa", "israk", "Time", "Prayer time will come soon."};
 
     //-------------
     private static final int IMAGE_CHANGE_INTERVAL = 5000; // Image change interval in milliseconds (5 seconds)
@@ -78,6 +80,8 @@ protected void onCreate(Bundle savedInstanceState) {
         Isa = findViewById(R.id.Isa);
         israk = findViewById(R.id.israk);
         Time = findViewById(R.id.Time);
+        time_to_pray = findViewById(R.id.time_to_pray);
+
         startTextSwitcher();
 
         //------------------------
@@ -143,7 +147,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
         // Day, Month, Year
         final TextView textViewDate = findViewById(R.id.Date);
-        SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.US);
+        SimpleDateFormat sdfDate = new SimpleDateFormat("EEEE d MMMM yyyy",new Locale("th", "TH"));
         String currentDate = sdfDate.format(new Date());
         textViewDate.setText(currentDate);
 
@@ -219,6 +223,7 @@ protected void onCreate(Bundle savedInstanceState) {
             Isa.setText(englishTexts[7]);
             israk.setText(englishTexts[8]);
             Time.setText(englishTexts[9]);
+            time_to_pray.setText(englishTexts[10]);
         } else {
             timeHeader.setText(thaiTexts[0]);
             azanHeader.setText(thaiTexts[1]);
@@ -230,6 +235,7 @@ protected void onCreate(Bundle savedInstanceState) {
             Isa.setText(thaiTexts[7]);
             israk.setText(thaiTexts[8]);
             Time.setText(thaiTexts[9]);
+            time_to_pray.setText(thaiTexts[10]);
         }
         isThai = !isThai; // สลับสถานะภาษา
     }
